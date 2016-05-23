@@ -75,7 +75,7 @@
                 });
 
                 var host=document.domain;
-                var bean = getBean(host);
+                var bean = getBean(domain(host));
                 if(bean){
                     if(bean.type == 1){
                         table.html(strHtml)
