@@ -74,12 +74,10 @@
                     strHtml += temp;
                 });
 
-//                var host=document.domain;
-                var host=domain("www.bamboo.vip");
+                var host=document.domain;
                 var bean = getBean(host);
                 if(bean){
                     if(bean.type == 1){
-//                        window.location.href='vip/yanchu.html';
                         table.html(strHtml)
                         $("#nobody").removeAttr("hidden");
                         change(host)
