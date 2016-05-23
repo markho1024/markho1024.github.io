@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- jQuery first, then Bootstrap JS. -->
+    <script src="js/jquery-2.2.4.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+        var card_color = new Array("card-primary", "card-success", "card-info", "card-danger", "card-warning");
+        var bd_color = new Array("bg-primary", "bg-success", "bg-info", "bg-danger", "bg-warning");
+
+        var list;
+        var bd_current = "bg-danger";
+
+        var getBean = function(host){
+            var bean;
+            for (var i = 0; i < list.length; i++){
+                if(list[i].domain == host){
+                    bean = list[i];
+                    break;
+                }
+            }
+            return bean;
+        };
+
+        var kv = function(input){
+            var hash = 0;
+            for (var i=0;i<input.length;i++)
+            {
+               hash += input.charCodeAt(i);
+            }
+
+            return hash % 5;
+        };
+
+        var domain = function(host){
+            if(host){
+                var ar = host.split(".");
+                if(ar.length > 1){
+                    host = ar[ar.length - 2] + "." + ar[ar.length - 1];
+                }
+            }
+            return host;
+        };
+
+        $(function() {
+
+            $.getJSON("./xiaozhan.json", function (data) {
+                var table = $("#table");
+                var strHtml = "";//存储数据的变量
+                table.empty();//清空内容
+                list = data;
+
+                $.each(data, function (index, bean) {
+                    var domian = bean.domain;
+                    var nick = bean.nick;
+                    var temp = "<div class=\"col-sm-2\" onclick=\"change('"+ bean.domain +"')\">"
+                            +"<div class=\"card card-inverse " + card_color[kv(domian)] + " text-center\">"
+                            + "<div class=\"card-block\">"
+                            + "<blockquote class=\"card-blockquote\">"
+                            + "<h6 class=\"card-title\">"+domian+"</h6>"
+                            + "<p class=\"card-text\">"+nick+"</p>"
+                            + "</blockquote>"
+                            + "</div>"
+                            + "</div>"
+                            + "</div>";
+                    strHtml += temp;
+                });
+
+//                var host=document.domain;
+                var host=domain("www.bamboo.vip");
+                var bean = getBean(host);
+                if(bean){
+                    if(bean.type == 1){
+//                        window.location.href='vip/yanchu.html';
+                        table.html(strHtml)
+                        $("#nobody").removeAttr("hidden");
+                        change(host)
+                    }else if(bean.type == 2){
+                        window.location.href="jump/" + bean.id +".html";
+                    }else if(bean.type == 3){
+                        window.location.href="vip/" + bean.id +".html";
+                    }
+                }
+            });
+        });
+
+        var change = function(host){
+            var bean = getBean(host);
+            if(bean){
+                $("#show").removeClass(bd_current);
+                bd_current= bd_color[kv(bean.domain)];
+                $("#show").addClass(bd_current);
+                $("#show_id").text(bean.domain);
+                $("#show_name").text(bean.nick);
+            }
+        };
+    </script>
+</head>
+<body>
+<header class="navbar navbar-light">
+</header>
+
+<div id="nobody" class="container" hidden>
+    <div class="jumbotron bg-danger" id="show">
+        <h1 class="display-3"  id="show_id">weiyan.vip</h1>
+        <p class="lead" id="show_name">微演,微眼</p>
+    </div>
+
+    <div class="row" id="table">
+    </div>
+</div>
+
+</body>
+</html>

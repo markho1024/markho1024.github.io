@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这个网站可卖~</title>
+    <link rel="stylesheet" href="../css/anicollection.css">
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <script src="../js/jquery-2.2.4.js"></script>
+    <script type="text/javascript">
+        var hello = function(){
+            $("#tip").click();
+        };
+
+        var jump = function(url){
+            window.setTimeout(function () {
+                location.href = "http://"+url;
+            }, 1000);
+        };
+
+        window.setInterval(hello,1000);
+    </script>
+</head>
+<body class="container">
+    <div style="margin-top: 100px" >
+        <div class="row">
+            <h3 id="tip" class="col-sm-offset-6 col-sm-4" data-anijs="if: click, do: bounce animated" >今天看看哪里能白拿!!!</h3>
+        </div>
+
+        <div class="row">
+        <h1 id="go" class="display-4 col-sm-offset-4 col-sm-4" data-anijs="if: mouseover, do: rubberBand animated;">白拿
+            <span class="display-2 text-danger">VIP</span></h1>
+        </div>
+
+        <div class="row" style="margin-top: 100px">
+            <div class="col-sm-2 col-sm-offset-2" onclick="jump('baina.jd.com')" data-anijs="if: click, do: zoomOutUp animated;if: mouseover, do: tada animated;">
+                <div class="card card-inverse card-success text-center">
+                    <div class="card-block">
+                        <blockquote class="card-blockquote">
+                            <h6 class="card-title">京东白拿</h6>
+                            <p class="card-text">喝奶茶的狗东快递给力!</p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2" onclick="jump('baina.gome.com.cn')" data-anijs="if: click, do: zoomOutUp animated;if: mouseover, do: swing animated;">
+                <div class="card card-inverse card-danger text-center">
+                    <div class="card-block">
+                        <blockquote class="card-blockquote">
+                            <h6 class="card-title">国美</h6>
+                            <p class="card-text">老板不在东西都不要钱!</p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2" onclick="jump('shishi.taobao.com')" data-anijs="if: click, do: zoomOutUp animated;if: mouseover, do: shake animated;">
+                <div class="card card-inverse card-info text-center">
+                    <div class="card-block">
+                        <blockquote class="card-blockquote">
+                            <h6 class="card-title">天猫试用</h6>
+                            <p class="card-text">这里所有的都免费试用!</p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="card card-inverse card-success text-center" data-anijs="if: click, do: zoomOutUp animated;if: mouseover, do: wobble animated;">
+                    <div class="card-block">
+                        <blockquote class="card-blockquote">
+                            <h6 class="card-title">其他</h6>
+                            <a href="mailto:673978109@qq.com" class="card-text">立刻邮件给我补上你的网站!</a>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/anijs.js"></script>
+</body>
+</html>
