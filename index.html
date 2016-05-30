@@ -77,15 +77,9 @@
                 var host=domain(document.domain);
                 var bean = getBean(host);
                 if(bean){
-                    if(bean.type == 1){
-                        table.html(strHtml)
-                        $("#nobody").removeAttr("hidden");
-                        change(host)
-                    }else if(bean.type == 2){
-                        window.location.href="jump/" + bean.domain +".html";
-                    }else if(bean.type == 3){
-                        window.location.href="vip/" + bean.domain +".html";
-                    }
+                    table.html(strHtml)
+                    $("#nobody").removeAttr("hidden");
+                    change(host)
                 }
             });
         });
